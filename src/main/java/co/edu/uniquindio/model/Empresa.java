@@ -9,30 +9,31 @@ public class Empresa {
     private String nit;
     private String direccion;
     private String telefono;
-    private List<sede> listaSedes;
-    private List<cliente> listaClientes;
-    private List<operador> listaOperadores;
+
+    private Sede[] listSedes;
+    private Cliente[] listClientes;
+    private Operador[] listOperadores;
 
 
-    public empresa( String nombre, String nit, String direccion , String telefono){
+    public Empresa( String nombre, String nit, String direccion , String telefono){
         this.nombre = nombre;
         this.nit = nit;
         this.direccion = direccion;
         this.telefono = telefono;
 
-        this.listaSedes = new ArrayList<>();
-        this.listaOperadores = new ArrayList<>();
-        this.listaClientes = new ArrayList<>();
+        listSedes = new Sede[10];
+        listClientes= new Cliente[10];
+        listOperadores = new Operador[10];
 
     }
 
 //--------------------------------------------------------------------------------------------------------
 
     // REGISTRAR CLIENTE
-    public boolean agregarCliente(String documento, String nombreCompleto, String telefono,
-                                  String email, String pais){
-        cliente nuevoCliente = new cliente(documento, nombreCompleto, telefono, email, pais);
-        if (encontrarIndexCliente(nuevoCliente.getDocumento()) == -1) {
+    public boolean agregarCliente(String nombre, String telefono, String correo,
+                                  String id){
+        Cliente nuevoCliente = new Cliente(nombre,telefono,correo,id);
+        if (encontrarIndexCliente(nuevoCliente.getId()) == -1) {
             for (int i = 0; i < listClientes.length; i++) {
                 if (listClientes[i] == null) {
                     listClientes[i] = nuevoCliente;
@@ -43,18 +44,16 @@ public class Empresa {
         return false; // Ya existe o el arreglo está lleno
     }
     // ENCONTRAR INDEX CLIENTE
-    public int encontrarIndexCliente(String cedulaBuscar) {
+    public int encontrarIndexCliente(String id) {
         for (int i = 0; i < listClientes.length; i++) {
-            if (listClientes[i] != null && listClientes[i].getDocumento().equals(cedulaBuscar)) {
+            if (listClientes[i] != null && listClientes[i].getId().equals(id)) {
                 return i;
             }
         }
         return -1;
     }
 
-    public boolean agregarReserva(Reserva nuevaReserva) {
-    }
 
-    public Cliente buscarCliente(String cedulaCliente) {
-    }
+
+
 }

@@ -1,6 +1,6 @@
 package co.edu.uniquindio.model;
 
-public class Cliente {
+public class Cliente{
     private String nombre;
     private String telefono;
     private String correo;

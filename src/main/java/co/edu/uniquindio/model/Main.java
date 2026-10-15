@@ -125,9 +125,18 @@ public class Main{
 
     private static void registrarCliente() {
         String nombre = JOptionPane.showInputDialog("Ingrese el nombre del cliente:");
-        String cedula = JOptionPane.showInputDialog("Ingrese la cédula del cliente:");
-        // Aquí puedes invocar el método de tu clase Empresa para guardarlo
-        JOptionPane.showMessageDialog(null, "Cliente registrado con éxito.");
+        String telefono = JOptionPane.showInputDialog("Ingrese el numero de telefono:");
+        String correo = JOptionPane.showInputDialog("Ingrese el correo:");
+        String id = JOptionPane.showInputDialog("Ingrese el número de identificación:");
+
+        boolean resultado = miEmpresa.agregarCliente(nombre,telefono,correo,id);
+        if(resultado){
+            JOptionPane.showMessageDialog(null, "Cliente registrado con éxito.");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "no se hizo el registro");
+        }
+
     }
 
     private static void registrarOperador() {
