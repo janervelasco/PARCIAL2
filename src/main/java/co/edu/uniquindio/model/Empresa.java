@@ -8,7 +8,7 @@ public class Empresa {
     private String ciudad;
     private String telefono;
 
-    // Arreglos de tamaño fijo
+
     private Camara[] listCamaras = new Camara[100];
     private Dron[] listDrones = new Dron[100];
     private KitIluminacion[] listKits = new KitIluminacion[100];
@@ -23,6 +23,8 @@ public class Empresa {
         this.ciudad = ciudad;
         this.telefono = telefono;
     }
+
+//----------------------------------------------------------------------------------------------------------------------
 
     // --- BÚSQUEDAS POR ÍNDICE ---
     public int encontrarIndexCamara(String codigo) {
@@ -74,6 +76,8 @@ public class Empresa {
         return -1;
     }
 
+//----------------------------------------------------------------------------------------------------------------------
+
     // --- BÚSQUEDAS DE OBJETOS COMPLETOS ---
     public Camara buscarCamara(String codigo) {
         int idx = encontrarIndexCamara(codigo);
@@ -94,6 +98,8 @@ public class Empresa {
         int idx = encontrarIndexOperador(id);
         return idx != -1 ? listOperadores[idx] : null;
     }
+
+//----------------------------------------------------------------------------------------------------------------------
 
     // --- REGISTROS ---
     public boolean agregarCamara(String codigo, String marca, String modelo, String resolucionMax, boolean lentes) {
@@ -167,6 +173,8 @@ public class Empresa {
         return false;
     }
 
+//----------------------------------------------------------------------------------------------------------------------
+
     // --- GESTIÓN DE RESERVA ---
     public boolean agregarEquipoAReserva(String codigoReserva, EquipoAudiovisual equipo, int horas) {
         int idx = encontrarIndexReserva(codigoReserva);
@@ -188,5 +196,25 @@ public class Empresa {
             return listReservas[idx].calcularCostoTotal(); // Asegúrate de tener este método en Reserva o implementarlo
         }
         return 0.0;
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+    public String mostrarCliente(String idClienteMostrar) {
+        String mensaje = "";
+        int index = encontrarIndexCliente(idClienteMostrar);
+
+        if (index != -1) {
+            Cliente clienteEncontrado = listClientes[index];
+
+            mensaje = "Mascota encontrada:\n" +
+                    "\nNombre: " + clienteEncontrado.getN() +
+                    "\nRaza: " + mascotaEncontrada.getRaza() +
+                    "\nEspecie: " + mascotaEncontrada.getEspecie() +
+                    "\nEdad: " + mascotaEncontrada.getEdad();
+        } else {
+            mensaje = "La mascota no se encuentra en la lista.";
+        }
+
+        return mensaje;
     }
 }

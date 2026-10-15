@@ -14,6 +14,7 @@ public class Main {
                         "\n--- MENÚ PRINCIPAL PIXELRENT ---\n" +
                                 "1. Menú de Registros\n" +
                                 "2. Gestión de Reservas y Costos\n" +
+                                "3. Consultar información\n"
                                 "0. Salir del sistema"
                 );
                 if (optStr == null) break;
@@ -22,6 +23,7 @@ public class Main {
                 switch (option) {
                     case 1: menuRegistros(); break;
                     case 2: menuGestionReservas(); break;
+                    case 3: menuConsultas(); break;
                     case 0: JOptionPane.showMessageDialog(null, "¡Saliendo del sistema!"); break;
                     default: JOptionPane.showMessageDialog(null, "Opción inválida."); break;
                 }
@@ -30,6 +32,8 @@ public class Main {
             }
         } while (option != 0);
     }
+
+//----------------------------------------------------------------------------------------------------------------------
 
     private static void menuRegistros() {
         String subOptStr = JOptionPane.showInputDialog(
@@ -128,6 +132,8 @@ public class Main {
         } else { JOptionPane.showMessageDialog(null, "Error al crear la reserva."); }
     }
 
+//----------------------------------------------------------------------------------------------------------------------
+
     private static void menuGestionReservas() {
         String subOptStr = JOptionPane.showInputDialog(
                 "\n--- GESTIÓN DE RESERVAS ---\n" +
@@ -169,5 +175,36 @@ public class Main {
             case 0:
                 break;
         }
+    }
+
+//----------------------------------------------------------------------------------------------------------------------
+    public static void menuConsultas(){
+        String subOptStr = JOptionPane.showInputDialog(
+                "\n--- MENÚ DE CONSULTAS ---\n" +
+                        "1. Consultar información cliente\n" +
+                        "2. Consultar información operador\n" +
+                        "3. Consultar información sede\n" +
+                        "4. Consultar información reserva\n" +
+                        "0. Volver"
+        );
+        if (subOptStr == null) return;
+        int subOpt = Integer.parseInt(subOptStr);
+        switch (subOpt) {
+            case 1: solicitarIdCliente(); break;
+            case 2: solicitarIdOperador(); break;
+            case 3: solicitarIdSede(); break;
+            case 4: solicitarIdReserva(); break;
+            case 0: break;
+            default: JOptionPane.showMessageDialog(null, "Opción inválida."); break;
+        }
+    }
+
+    private static void solicitarIdCliente() {
+        String idClienteMostrar = JOptionPane.showInputDialog("Ingrese el Id del cliente que quiere ver: ");
+
+        String resultado = miEmpresa.mostrarCliente(idClienteMostrar);
+
+        JOptionPane.showMessageDialog(null, resultado);
+
     }
 }
