@@ -4,57 +4,77 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+
+
+
 public class Reserva {
     private String codigoUnico;
-    private LocalDate fecha;
     private Cliente cliente;
-    private Operador operador;
-    private EstadoReserva estado;
+    private LocalDate fecha;
     private Turno turno;
+    private EstadoReserva estado;
+    private Operador operador;
 
-    private List<Camara> listaCamaras = new ArrayList<>();
-    private List<Dron> listaDrones = new ArrayList<>();
-    private List<KitIluminacion> listaKits = new ArrayList<>();
+    // Arreglos paralelos de tamaño 10 para los equipos y sus respectivas horas
+    private EquipoAudiovisual[] listEquipos;
+    private int[] listHoras;
 
-    public Reserva(String codigoUnico, LocalDate fecha, Cliente cliente, Operador operador, EstadoReserva estado, Turno turno) {
+    public Reserva(String codigoUnico, Cliente cliente, LocalDate fecha, Turno turno) {
         this.codigoUnico = codigoUnico;
-        this.fecha = fecha;
         this.cliente = cliente;
-        this.operador = operador;
-        this.estado = estado;
+        this.fecha = fecha;
         this.turno = turno;
+        this.estado = EstadoReserva.SOLICITADO; // Toda nueva reserva inicia como solicitada
+        this.listEquipos = new EquipoAudiovisual[10];
+        this.listHoras = new int[10];
     }
 
-    // Método de cálculo de costo total estrictamente con ciclos tradicionales de índice i
-    public double calcularCostoTotal(int numeroDias) {
-        double subtotal = 0.0;
-
-        for (int i = 0; i < listaCamaras.size(); i++) {
-            subtotal += listaCamaras.get(i).costoDia();
+    public boolean agregarEquipoReserva(EquipoAudiovisual equipo, int horas) {
+        // Verificar que el equipo esté disponible
+        if (equipo.getCondicion() != Condicion.DISPONIBLE) {
+            return false;
         }
 
-        for (int i = 0; i < listaDrones.size(); i++) {
-            subtotal += listaDrones.get(i).costoDia();
+        // Verificar que no esté repetido en la reserva
+        for (int i = 0; i < listEquipos.length; i++) {
+            if (listEquipos[i] != null && listEquipos[i].getCodigo().equals(equipo.getCodigo())) {
+                return false;
+            }
         }
 
-        for (int i = 0; i < listaKits.size(); i++) {
-            subtotal += listaKits.get(i).costoDia();
+        // Buscar espacio libre y guardarlo de forma paralela usando la misma posición i
+        for (int i = 0; i < listEquipos.length; i++) {
+            if (listEquipos[i] == null) {
+                listEquipos[i] = equipo;
+                listHoras[i] = horas;
+                return true;
+            }
         }
+        return false;
+    }
 
-        return subtotal * numeroDias;
+    // Cálculo del costo total utilizando los arreglos paralelos y polimorfismo por horas
+    public double calcularCostoTotal() {
+        double total = 0.0;
+        for (int i = 0; i < listEquipos.length; i++) {
+            if (listEquipos[i] != null) {
+                total += listEquipos[i].calcularCosto(listHoras[i]);
+            }
+        }
+        return total;
     }
 
     // Getters y Setters
     public String getCodigoUnico() { return codigoUnico; }
-    public LocalDate getFecha() { return fecha; }
     public Cliente getCliente() { return cliente; }
-    public Operador getOperador() { return operador; }
-    public void setOperador(Operador operador) { this.operador = operador; }
+    public LocalDate getFecha() { return fecha; }
+    public Turno getTurno() { return turno; }
     public EstadoReserva getEstado() { return estado; }
     public void setEstado(EstadoReserva estado) { this.estado = estado; }
-    public Turno getTurno() { return turno; }
-
-    public List<Camara> getListaCamaras() { return listaCamaras; }
-    public List<Dron> getListaDrones() { return listaDrones; }
-    public List<KitIluminacion> getListaKits() { return listaKits; }
+    public Operador getOperador() { return operador; }
+    public void setOperador(Operador operador) { this.operador = operador; }
+    public EquipoAudiovisual[] getListEquipos() { return listEquipos; }
+    public int[] getListHoras() { return listHoras; }
 }
