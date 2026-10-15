@@ -1,10 +1,11 @@
 package co.edu.uniquindio.model;
 import javax.swing.*;
-public class Main{
+public class Main {
     private static Empresa miEmpresa;
-    public static void main(String[] args){
 
-        miEmpresa = new Empresa("PixelRent","123456789","armenia", "213213213");
+    public static void main(String[] args) {
+
+        miEmpresa = new Empresa("PixelRent", "123456789", "armenia", "213213213");
 
         int option = 0;
         do {
@@ -22,16 +23,16 @@ public class Main{
 
                 case 1:
                     int option1 = 0;
-                    do{
-                        option1= Integer.parseInt(JOptionPane.showInputDialog("para registrar seleccione una opción:"+
-                                "\nSeleccione una opción:"+
-                                "\n 1. Registrar cliente."+
-                                "\n 2. Registrar operador."+
-                                "\n 3. Registrar sede."+
-                                "\n 4. Registrar equipos."+
-                                "\n 5. Crear Reserva"+
+                    do {
+                        option1 = Integer.parseInt(JOptionPane.showInputDialog("para registrar seleccione una opción:" +
+                                "\nSeleccione una opción:" +
+                                "\n 1. Registrar cliente." +
+                                "\n 2. Registrar operador." +
+                                "\n 3. Registrar sede." +
+                                "\n 4. Registrar equipos." +
+                                "\n 5. Crear Reserva" +
                                 "\n 0. Salir del sistema"));
-                        switch (option1){
+                        switch (option1) {
                             case 1:
                                 registrarCliente();
                                 break;
@@ -54,30 +55,30 @@ public class Main{
                                 JOptionPane.showMessageDialog(null, "la opción es invalida.");
                                 break;
                         }
-                    }while (option1 != 0);
+                    } while (option1 != 0);
                     break;
                 case 2:
                     int option2 = 0;
-                    do{
-                        option2= Integer.parseInt(JOptionPane.showInputDialog("Gestión de Reservas"+
-                                "\nSeleccione una opción:"+
-                                "\n 1. Agregar equipos audiovisuales a una reserva."+
-                                "\n 2. Asignar operador."+
-                                "\n 3. Confirmar reserva."+
-                                "\n 4. Cambiar estado de reserva."+
+                    do {
+                        option2 = Integer.parseInt(JOptionPane.showInputDialog("Gestión de Reservas" +
+                                "\nSeleccione una opción:" +
+                                "\n 1. Agregar equipos audiovisuales a una reserva." +
+                                "\n 2. Asignar operador." +
+                                "\n 3. Confirmar reserva." +
+                                "\n 4. Cambiar estado de reserva." +
                                 "\n 0. Salir del sistema"));
-                        switch (option2){
+                        switch (option2) {
                             case 1:
-                                agregarEquipoReserva();
+
                                 break;
                             case 2:
-                                asignarOperador();
+
                                 break;
                             case 3:
-                                confirmarReserva();
+
                                 break;
                             case 4:
-                                cambiarEstadoReserva();
+
                                 break;
                             case 0:
                                 JOptionPane.showMessageDialog(null, "el programa finalizo.");
@@ -86,26 +87,26 @@ public class Main{
                                 JOptionPane.showMessageDialog(null, "la opción es invalida.");
                                 break;
                         }
-                    }while (option2 != 0);
+                    } while (option2 != 0);
                     break;
                 case 3:
                     int option3 = 0;
-                    do{
-                        option3= Integer.parseInt(JOptionPane.showInputDialog("Consultas y Cálculos"+
-                                "\nSeleccione una opción:"+
-                                "\n 1. Consultar equipos Audiovisuales disponibles."+
-                                "\n 2. Consultar reservas confirmadas por cliente."+
-                                "\n 3. Calcular y consultar valor total de una reserva."+
+                    do {
+                        option3 = Integer.parseInt(JOptionPane.showInputDialog("Consultas y Cálculos" +
+                                "\nSeleccione una opción:" +
+                                "\n 1. Consultar equipos Audiovisuales disponibles." +
+                                "\n 2. Consultar reservas confirmadas por cliente." +
+                                "\n 3. Calcular y consultar valor total de una reserva." +
                                 "\n 0. Salir del sistema"));
-                        switch (option3){
+                        switch (option3) {
                             case 1:
-                                consultarEquipoDisponible();
+
                                 break;
                             case 2:
-                                consultarReservaConfirmada();
+
                                 break;
                             case 3:
-                                calcularValorReserva();
+                                
                                 break;
                             case 0:
                                 JOptionPane.showMessageDialog(null, "el programa finalizo.");
@@ -114,10 +115,10 @@ public class Main{
                                 JOptionPane.showMessageDialog(null, "la opción es invalida.");
                                 break;
                         }
-                    }while (option3 != 0);
+                    } while (option3 != 0);
                     break;
             }
-        }while (option != 0);
+        } while (option != 0);
     }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -166,18 +167,17 @@ public class Main{
         String turnoStr = JOptionPane.showInputDialog("Ingrese el turno (MAÑANA, TARDE, NOCHE):");
         Turno turno = Turno.valueOf(turnoStr.toUpperCase());
 
-        String cedulaCliente = JOptionPane.showInputDialog("Ingrese la cédula del cliente:");
+        String IDliente = JOptionPane.showInputDialog("Ingrese la cédula del cliente:");
 
-        // Buscamos el cliente en la empresa (asegúrate de tener este método en Empresa)
-        Cliente cliente = miEmpresa.buscarCliente(cedulaCliente);
+        // Buscamos el cliente en la empresa
+        Cliente cliente = miEmpresa.buscarCliente(IDliente);
 
         if (cliente == null) {
             JOptionPane.showMessageDialog(null, "¡Error! El cliente no está registrado en el sistema.");
             return;
         }
 
-        // 2. Creamos la reserva usando exactamente el constructor que definimos
-        // Nota: El operador se deja en null al inicio ya que se puede asignar después si incluye dron.
+        // 2. Creamos la reserva (¡sin escribir "operador:"!)
         Reserva nuevaReserva = new Reserva(codigoUnico, fecha, cliente, null, EstadoReserva.SOLICITADO, turno);
 
         // 3. Intentamos agregarla a la empresa

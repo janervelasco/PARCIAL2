@@ -15,14 +15,14 @@ public class Empresa {
     private Operador[] listOperadores;
 
 
-    public Empresa( String nombre, String nit, String direccion , String telefono){
+    public Empresa(String nombre, String nit, String direccion, String telefono) {
         this.nombre = nombre;
         this.nit = nit;
         this.direccion = direccion;
         this.telefono = telefono;
 
         listSedes = new Sede[10];
-        listClientes= new Cliente[10];
+        listClientes = new Cliente[10];
         listOperadores = new Operador[10];
 
     }
@@ -31,8 +31,8 @@ public class Empresa {
 
     // REGISTRAR CLIENTE
     public boolean agregarCliente(String nombre, String telefono, String correo,
-                                  String id){
-        Cliente nuevoCliente = new Cliente(nombre,telefono,correo,id);
+                                  String id) {
+        Cliente nuevoCliente = new Cliente(nombre, telefono, correo, id);
         if (encontrarIndexCliente(nuevoCliente.getId()) == -1) {
             for (int i = 0; i < listClientes.length; i++) {
                 if (listClientes[i] == null) {
@@ -43,6 +43,7 @@ public class Empresa {
         }
         return false; // Ya existe o el arreglo está lleno
     }
+
     // ENCONTRAR INDEX CLIENTE
     public int encontrarIndexCliente(String id) {
         for (int i = 0; i < listClientes.length; i++) {
@@ -54,6 +55,12 @@ public class Empresa {
     }
 
 
+    public Cliente buscarCliente(String iDliente) {
 
+        return null;
+    }
 
+    public boolean agregarReserva(Reserva nuevaReserva) {
+        return false;
+    }
 }
