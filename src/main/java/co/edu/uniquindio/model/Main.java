@@ -56,10 +56,72 @@ public class Main{
                         }
                     }while (option1 != 0);
                     break;
-
+                case 2:
+                    int option2 = 0;
+                    do{
+                        option2= Integer.parseInt(JOptionPane.showInputDialog("Gestión de Reservas"+
+                                "\nSeleccione una opción:"+
+                                "\n 1. Agregar equipos audiovisuales a una reserva."+
+                                "\n 2. Asignar operador."+
+                                "\n 3. Confirmar reserva."+
+                                "\n 4. Cambiar estado de reserva."+
+                                "\n 0. Salir del sistema"));
+                        switch (option2){
+                            case 1:
+                                agregarEquipoReserva();
+                                break;
+                            case 2:
+                                asignarOperador();
+                                break;
+                            case 3:
+                                confirmarReserva();
+                                break;
+                            case 4:
+                                cambiarEstadoReserva();
+                                break;
+                            case 0:
+                                JOptionPane.showMessageDialog(null, "el programa finalizo.");
+                                break;
+                            default:
+                                JOptionPane.showMessageDialog(null, "la opción es invalida.");
+                                break;
+                        }
+                    }while (option2 != 0);
+                    break;
+                case 3:
+                    int option3 = 0;
+                    do{
+                        option3= Integer.parseInt(JOptionPane.showInputDialog("Consultas y Cálculos"+
+                                "\nSeleccione una opción:"+
+                                "\n 1. Consultar equipos Audiovisuales disponibles."+
+                                "\n 2. Consultar reservas confirmadas por cliente."+
+                                "\n 3. Calcular y consultar valor total de una reserva."+
+                                "\n 0. Salir del sistema"));
+                        switch (option3){
+                            case 1:
+                                consultarEquipoDisponible();
+                                break;
+                            case 2:
+                                consultarReservaConfirmada();
+                                break;
+                            case 3:
+                                calcularValorReserva();
+                                break;
+                            case 0:
+                                JOptionPane.showMessageDialog(null, "el programa finalizo.");
+                                break;
+                            default:
+                                JOptionPane.showMessageDialog(null, "la opción es invalida.");
+                                break;
+                        }
+                    }while (option3 != 0);
+                    break;
             }
         }while (option != 0);
     }
+
+//----------------------------------------------------------------------------------------------------------------------
+    //REGISTRAR
 
     private static void registrarCliente() {
         String nombre = JOptionPane.showInputDialog("Ingrese el nombre del cliente:");
@@ -82,6 +144,9 @@ public class Main{
     private static void registrarEquipo() {
         JOptionPane.showMessageDialog(null, "Módulo de registro de equipos.");
     }
+
+//------------------------------------------------------------------------------------------------------------------
+    //CREAR RESERVA
 
     private static void crearReserva() {
         // 1. Pedimos los datos fundamentales para instanciar la Reserva
