@@ -142,9 +142,20 @@ public class Main {
 
     private static void registrarOperador() {
         String nombre = JOptionPane.showInputDialog("Ingrese el nombre del operador:");
-        String id = JOptionPane.showInputDialog("Ingrese el ID del operador:");
-        JOptionPane.showMessageDialog(null, "Operador registrado con éxito.");
+        String id = JOptionPane.showInputDialog("Ingrese el numero de identificación:");
+        Turno turno = JOptionPane.showInputDialog("Ingrese el turno:");
+
+
+        boolean resultado = miEmpresa.agregarOperador(nombre,id,turno);
+        if(resultado){
+            JOptionPane.showMessageDialog(null, "Operador registrado con éxito.");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "no se hizo el registro");
+        }
+
     }
+
 
     private static void registrarSede() {
         String nombre = JOptionPane.showInputDialog("Ingrese el nombre de la sede:");

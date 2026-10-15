@@ -44,10 +44,34 @@ public class Empresa {
         return false; // Ya existe o el arreglo está lleno
     }
 
+    // REGISTRAR OPERADOR
+    public boolean agregarOperador(String nombre,String id, Turno turno) {
+        Cliente nuevoOperador = new Cliente(nombre,id, turno);
+        if (encontrarIndexOperador(nuevoOperador.getId()) == -1) {
+            for (int i = 0; i < listOperadores.length; i++) {
+                if (listOperadores[i] == null) {
+                    listOperadores[i] = nuevoOperador;
+                    return true;
+                }
+            }
+        }
+        return false; // Ya existe o el arreglo está lleno
+    }
+
+
     // ENCONTRAR INDEX CLIENTE
     public int encontrarIndexCliente(String id) {
         for (int i = 0; i < listClientes.length; i++) {
             if (listClientes[i] != null && listClientes[i].getId().equals(id)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    // ENCONTRAR INDEX OPERADOR
+    public int encontrarIndexOperador(String id) {
+        for (int i = 0; i < listOperadores.length; i++) {
+            if (listOperadores[i] != null && listOperadores[i].getId().equals(id)) {
                 return i;
             }
         }
