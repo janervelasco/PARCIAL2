@@ -52,4 +52,9 @@ public class Empresa {
         return -1;
     }
 
+    public boolean agregarReserva(Reserva nuevaReserva) {
+    }
+
+    public Cliente buscarCliente(String cedulaCliente) {
+    }
 }
