@@ -14,7 +14,7 @@ public class Main {
                         "\n--- MENÚ PRINCIPAL PIXELRENT ---\n" +
                                 "1. Menú de Registros\n" +
                                 "2. Gestión de Reservas y Costos\n" +
-                                "3. Consultar información\n"
+                                "3. Consultar información\n"+
                                 "0. Salir del sistema"
                 );
                 if (optStr == null) break;
@@ -203,6 +203,33 @@ public class Main {
         String idClienteMostrar = JOptionPane.showInputDialog("Ingrese el Id del cliente que quiere ver: ");
 
         String resultado = miEmpresa.mostrarCliente(idClienteMostrar);
+
+        JOptionPane.showMessageDialog(null, resultado);
+
+    }
+
+    private static void solicitarIdOperador() {
+        String idOperadorMostrar = JOptionPane.showInputDialog("Ingrese el Id del operador que quiere ver: ");
+
+        String resultado = miEmpresa.mostrarOperador(idOperadorMostrar);
+
+        JOptionPane.showMessageDialog(null, resultado);
+
+    }
+
+    private static void solicitarIdSede() {
+        String idSedeMostrar = JOptionPane.showInputDialog("Ingrese el Id de la sede que quiere ver: ");
+
+        String resultado = miEmpresa.mostrarSede(idSedeMostrar);
+
+        JOptionPane.showMessageDialog(null, resultado);
+
+    }
+
+    private static void solicitarIdReserva() {
+        String idReservaMostrar = JOptionPane.showInputDialog("Ingrese el id de la reserva que quiere ver:  ");
+
+        String resultado = miEmpresa.mostrarReserva(idReservaMostrar);
 
         JOptionPane.showMessageDialog(null, resultado);
 

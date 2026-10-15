@@ -206,13 +206,67 @@ public class Empresa {
         if (index != -1) {
             Cliente clienteEncontrado = listClientes[index];
 
-            mensaje = "Mascota encontrada:\n" +
-                    "\nNombre: " + clienteEncontrado.getN() +
-                    "\nRaza: " + mascotaEncontrada.getRaza() +
-                    "\nEspecie: " + mascotaEncontrada.getEspecie() +
-                    "\nEdad: " + mascotaEncontrada.getEdad();
+            mensaje = "\n---Cliente encontrado---\n" +
+                    "\nNombre: " + clienteEncontrado.getNombre() +
+                    "\nTelefono: " + clienteEncontrado.getTelefono() +
+                    "\nCorreo: " + clienteEncontrado.getCorreo() ;
         } else {
-            mensaje = "La mascota no se encuentra en la lista.";
+            mensaje = "El cliente no se encuentra en la lista.";
+        }
+
+        return mensaje;
+    }
+
+    public String mostrarOperador(String idOperadorMostrar) {
+        String mensaje = "";
+        int index = encontrarIndexOperador(idOperadorMostrar);
+
+        if (index != -1) {
+            Operador operadorEncontrado = listOperadores[index];
+
+            mensaje = "\n---Operador encontrado---\n" +
+                    "\nNombre: " + operadorEncontrado.getNombre() +
+                    "\nTelefono: " + operadorEncontrado.getTelefono() ;
+        } else {
+            mensaje = "El Operador no se encuentra en la lista.";
+        }
+
+        return mensaje;
+    }
+
+    public String mostrarSede(String idSedeMostrar) {
+        String mensaje = "";
+        int index = encontrarIndexSede(idSedeMostrar);
+
+        if (index != -1) {
+            Sede sedeEncontrado = listSedes[index];
+
+            mensaje = "\n---Sede encontrada---\n" +
+                    "\nNombre: " + sedeEncontrado.getNombre() +
+                    "\nTelefono: " + sedeEncontrado.getDireccion() +
+                    "\nCiudad: " + sedeEncontrado.getCiudad() ;
+        } else {
+            mensaje = "La Sede no se encuentra en la lista.";
+        }
+
+        return mensaje;
+    }
+
+    public String mostrarReserva(String idReservaEncontrar) {
+        String mensaje = "";
+        int index = encontrarIndexReserva(idReservaEncontrar);
+
+        if (index != -1) {
+            Reserva reservaEncontrada = listReservas[index];
+
+            mensaje = "\n---Reserva encontrada---\n" +
+                    "\nNombre: " + reservaEncontrada.getCliente() +
+                    "\nFecha: " + reservaEncontrada.getFecha() +
+                    "\nTurno: " + reservaEncontrada.getTurno() +
+                    "\nEstado: " + reservaEncontrada.getEstado() +
+                    "\nOperador: " + reservaEncontrada.getOperador();
+        } else {
+            mensaje = "La Reserva no se encuentra en la lista.";
         }
 
         return mensaje;
