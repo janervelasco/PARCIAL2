@@ -1,33 +1,23 @@
 package co.edu.uniquindio.model;
 
 public class EquipoAudiovisual {
-    private String codigo;
-    private String modelo;
-    private  String nombre;
-    private Condicion condicion;
+    protected String codigo;
+    protected String modelo;
+    protected String marca;
+    protected double costoDia;
 
-    public EquipoAudiovisual(String codigo, String modelo, String nombre,Condicion condicion){
+    public EquipoAudiovisual(String codigo, String modelo, String marca, double costoDia) {
         this.codigo = codigo;
-        this.nombre = nombre;
-        this.condicion = condicion;
-    }
-    public double calcularCosto(int horas){
-        return 0.0;
+        this.modelo = modelo;
+        this.marca = marca;
+        this.costoDia = costoDia;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public double costoDia() {
+        return costoDia;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public Condicion getCondicion() {
-        return condicion;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
+    public String getCodigo() { return codigo; }
+    public String getModelo() { return modelo; }
+    public String getMarca() { return marca; }
 }

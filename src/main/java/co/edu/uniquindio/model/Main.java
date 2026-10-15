@@ -1,203 +1,203 @@
 package co.edu.uniquindio.model;
+
 import javax.swing.*;
+
 public class Main {
     private static Empresa miEmpresa;
 
     public static void main(String[] args) {
-
-        miEmpresa = new Empresa("PixelRent", "123456789", "armenia", "213213213");
+        miEmpresa = new Empresa("PixelRent", "123456789", "Armenia", "3100000000");
 
         int option = 0;
         do {
-            option = Integer.parseInt(JOptionPane.showInputDialog("Este es el menu de la empresa pixelRent" +
-                    "\n Seleccione una opcion: " +
-                    "\n 1. Registrar." +
-                    "\n 2. Gestión de reservas." +
-                    "\n 3. Consultas y calculos." +
-
-                    "\n 0. Salir del sistema"));
-
-
-            switch (option) {
-
-
-                case 1:
-                    int option1 = 0;
-                    do {
-                        option1 = Integer.parseInt(JOptionPane.showInputDialog("para registrar seleccione una opción:" +
+            try {
+                String optStr = JOptionPane.showInputDialog(
+                        "=== MENÚ PRINCIPAL PIXELRENT ===" +
                                 "\nSeleccione una opción:" +
-                                "\n 1. Registrar cliente." +
-                                "\n 2. Registrar operador." +
-                                "\n 3. Registrar sede." +
-                                "\n 4. Registrar equipos." +
-                                "\n 5. Crear Reserva" +
-                                "\n 0. Salir del sistema"));
-                        switch (option1) {
-                            case 1:
-                                registrarCliente();
-                                break;
-                            case 2:
-                                registrarOperador();
-                                break;
-                            case 3:
-                                registrarSede();
-                                break;
-                            case 4:
-                                registrarEquipo();
-                                break;
-                            case 5:
-                                crearReserva();
-                                break;
-                            case 0:
-                                JOptionPane.showMessageDialog(null, "el programa finalizo.");
-                                break;
-                            default:
-                                JOptionPane.showMessageDialog(null, "la opción es invalida.");
-                                break;
-                        }
-                    } while (option1 != 0);
-                    break;
-                case 2:
-                    int option2 = 0;
-                    do {
-                        option2 = Integer.parseInt(JOptionPane.showInputDialog("Gestión de Reservas" +
-                                "\nSeleccione una opción:" +
-                                "\n 1. Agregar equipos audiovisuales a una reserva." +
-                                "\n 2. Asignar operador." +
-                                "\n 3. Confirmar reserva." +
-                                "\n 4. Cambiar estado de reserva." +
-                                "\n 0. Salir del sistema"));
-                        switch (option2) {
-                            case 1:
+                                "\n 1. Menú de Registros" +
+                                "\n 2. Gestión de reservas y Costos" +
+                                "\n 0. Salir del sistema"
+                );
+                if (optStr == null) break;
+                option = Integer.parseInt(optStr);
 
-                                break;
-                            case 2:
-
-                                break;
-                            case 3:
-
-                                break;
-                            case 4:
-
-                                break;
-                            case 0:
-                                JOptionPane.showMessageDialog(null, "el programa finalizo.");
-                                break;
-                            default:
-                                JOptionPane.showMessageDialog(null, "la opción es invalida.");
-                                break;
-                        }
-                    } while (option2 != 0);
-                    break;
-                case 3:
-                    int option3 = 0;
-                    do {
-                        option3 = Integer.parseInt(JOptionPane.showInputDialog("Consultas y Cálculos" +
-                                "\nSeleccione una opción:" +
-                                "\n 1. Consultar equipos Audiovisuales disponibles." +
-                                "\n 2. Consultar reservas confirmadas por cliente." +
-                                "\n 3. Calcular y consultar valor total de una reserva." +
-                                "\n 0. Salir del sistema"));
-                        switch (option3) {
-                            case 1:
-
-                                break;
-                            case 2:
-
-                                break;
-                            case 3:
-                                
-                                break;
-                            case 0:
-                                JOptionPane.showMessageDialog(null, "el programa finalizo.");
-                                break;
-                            default:
-                                JOptionPane.showMessageDialog(null, "la opción es invalida.");
-                                break;
-                        }
-                    } while (option3 != 0);
-                    break;
+                switch (option) {
+                    case 1:
+                        menuRegistros();
+                        break;
+                    case 2:
+                        JOptionPane.showMessageDialog(null, "Módulo de reservas en desarrollo.");
+                        break;
+                    case 0:
+                        JOptionPane.showMessageDialog(null, "¡Muchos éxitos en el parcial!");
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null, "Opción inválida.");
+                        break;
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Por favor ingrese un número válido.");
             }
         } while (option != 0);
     }
 
-//----------------------------------------------------------------------------------------------------------------------
-    //REGISTRAR
+    private static void menuRegistros() {
+        int optReg = 0;
+        do {
+            try {
+                String input = JOptionPane.showInputDialog(
+                        "=== MENÚ DE REGISTROS ===" +
+                                "\n 1. Registrar Cliente" +
+                                "\n 2. Registrar Operador" +
+                                "\n 3. Registrar Sede" +
+                                "\n 4. Registrar Equipos (Cámara, Dron, Kit)" +
+                                "\n 0. Volver al Menú Principal"
+                );
+                if (input == null) break;
+                optReg = Integer.parseInt(input);
+
+                switch (optReg) {
+                    case 1: registrarCliente(); break;
+                    case 2: registrarOperador(); break;
+                    case 3: registrarSede(); break;
+                    case 4: registrarEquipo(); break;
+                    case 0: break;
+                    default: JOptionPane.showMessageDialog(null, "Opción inválida."); break;
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error en los datos del menú.");
+            }
+        } while (optReg != 0);
+    }
 
     private static void registrarCliente() {
-        String nombre = JOptionPane.showInputDialog("Ingrese el nombre del cliente:");
-        String telefono = JOptionPane.showInputDialog("Ingrese el numero de telefono:");
-        String correo = JOptionPane.showInputDialog("Ingrese el correo:");
-        String id = JOptionPane.showInputDialog("Ingrese el número de identificación:");
+        try {
+            String id = JOptionPane.showInputDialog("Cédula del cliente:");
+            if (id == null) return;
+            String nombre = JOptionPane.showInputDialog("Nombre del cliente:");
+            String tel = JOptionPane.showInputDialog("Teléfono:");
+            String correo = JOptionPane.showInputDialog("Correo:");
+            String pais = JOptionPane.showInputDialog("País:");
 
-        boolean resultado = miEmpresa.agregarCliente(nombre,telefono,correo,id);
-        if(resultado){
-            JOptionPane.showMessageDialog(null, "Cliente registrado con éxito.");
+            if (miEmpresa.agregarCliente(id, nombre, tel, correo, pais)) {
+                JOptionPane.showMessageDialog(null, "¡Cliente registrado con éxito!");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo registrar (Ya existe o cupo lleno).");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al registrar el cliente.");
         }
-        else{
-            JOptionPane.showMessageDialog(null, "no se hizo el registro");
-        }
-
     }
 
     private static void registrarOperador() {
-        String nombre = JOptionPane.showInputDialog("Ingrese el nombre del operador:");
-        String id = JOptionPane.showInputDialog("Ingrese el numero de identificación:");
-        Turno turno = JOptionPane.showInputDialog("Ingrese el turno:");
+        try {
+            String id = JOptionPane.showInputDialog("ID del operador:");
+            if (id == null) return;
+            String nombre = JOptionPane.showInputDialog("Nombre del operador:");
+            if (nombre == null) return;
+            String turnoStr = JOptionPane.showInputDialog("Ingrese el turno (MAÑANA, TARDE, NOCHE):");
+            if (turnoStr == null) return;
 
+            String limpio = turnoStr.trim().toUpperCase();
+            Turno turno;
+            if (limpio.equals("MAÑANA") || limpio.equals("MANANA")) {
+                turno = Turno.MANIANA;
+            } else if (limpio.equals("TARDE")) {
+                turno = Turno.TARDE;
+            } else if (limpio.equals("NOCHE")) {
+                turno = Turno.NOCHE;
+            } else {
+                throw new IllegalArgumentException();
+            }
 
-        boolean resultado = miEmpresa.agregarOperador(nombre,id,turno);
-        if(resultado){
-            JOptionPane.showMessageDialog(null, "Operador registrado con éxito.");
+            if (miEmpresa.agregarOperador(nombre, id, turno)) {
+                JOptionPane.showMessageDialog(null, "¡Operador registrado con éxito!");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo registrar (Ya existe o cupo lleno).");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: Turno inválido. Escriba MAÑANA, TARDE o NOCHE.");
         }
-        else{
-            JOptionPane.showMessageDialog(null, "no se hizo el registro");
-        }
-
     }
 
-
     private static void registrarSede() {
-        String nombre = JOptionPane.showInputDialog("Ingrese el nombre de la sede:");
-        JOptionPane.showMessageDialog(null, "Sede registrada con éxito.");
+        try {
+            String nombre = JOptionPane.showInputDialog("Nombre de la sede:");
+            if (nombre == null) return;
+            String dir = JOptionPane.showInputDialog("Dirección:");
+            String ciudad = JOptionPane.showInputDialog("Ciudad:");
+
+            Sede nuevaSede = new Sede(nombre, dir, ciudad);
+            if (miEmpresa.agregarSede(nuevaSede)) {
+                JOptionPane.showMessageDialog(null, "¡Sede registrada con éxito!");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo registrar la sede.");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al registrar la sede.");
+        }
     }
 
     private static void registrarEquipo() {
-        JOptionPane.showMessageDialog(null, "Módulo de registro de equipos.");
-    }
+        try {
+            String tipoStr = JOptionPane.showInputDialog(
+                    "=== SELECCIONE EQUIPO ===" +
+                            "\n1. Cámara" +
+                            "\n2. Dron" +
+                            "\n3. Kit de Iluminación"
+            );
+            if (tipoStr == null) return;
+            int tipo = Integer.parseInt(tipoStr);
 
-//------------------------------------------------------------------------------------------------------------------
-    //CREAR RESERVA
+            switch (tipo) {
+                case 1:
+                    String codC = JOptionPane.showInputDialog("Código cámara:");
+                    String marcC = JOptionPane.showInputDialog("Marca:");
+                    String modC = JOptionPane.showInputDialog("Modelo:");
+                    double costoC = Double.parseDouble(JOptionPane.showInputDialog("Costo por día:"));
+                    String res = JOptionPane.showInputDialog("Resolución máx:");
+                    boolean lentes = Boolean.parseBoolean(JOptionPane.showInputDialog("¿Lentes intercambiables? (true/false):"));
 
-    private static void crearReserva() {
-        // 1. Pedimos los datos fundamentales para instanciar la Reserva
-        String codigoUnico = JOptionPane.showInputDialog("Ingrese el código único de la reserva:");
-        String fechaStr = JOptionPane.showInputDialog("Ingrese la fecha (Formato: AAAA-MM-DD):");
-        java.time.LocalDate fecha = java.time.LocalDate.parse(fechaStr);
+                    if (miEmpresa.agregarCamara(codC, marcC, modC, costoC, res, lentes)) {
+                        JOptionPane.showMessageDialog(null, "¡Cámara registrada con éxito!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se pudo registrar la cámara.");
+                    }
+                    break;
+                case 2:
+                    String codD = JOptionPane.showInputDialog("Código dron:");
+                    String marcD = JOptionPane.showInputDialog("Marca:");
+                    String modD = JOptionPane.showInputDialog("Modelo:");
+                    double costoD = Double.parseDouble(JOptionPane.showInputDialog("Costo por día:"));
+                    int aut = Integer.parseInt(JOptionPane.showInputDialog("Autonomía en minutos:"));
+                    boolean bat = Boolean.parseBoolean(JOptionPane.showInputDialog("¿Batería adicional? (true/false):"));
 
-        String turnoStr = JOptionPane.showInputDialog("Ingrese el turno (MAÑANA, TARDE, NOCHE):");
-        Turno turno = Turno.valueOf(turnoStr.toUpperCase());
+                    if (miEmpresa.agregarDron(codD, marcD, modD, costoD, aut, bat)) {
+                        JOptionPane.showMessageDialog(null, "¡Dron registrado con éxito!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se pudo registrar el dron.");
+                    }
+                    break;
+                case 3:
+                    String codK = JOptionPane.showInputDialog("Código kit:");
+                    String marcK = JOptionPane.showInputDialog("Marca:");
+                    String modK = JOptionPane.showInputDialog("Modelo:");
+                    double costoK = Double.parseDouble(JOptionPane.showInputDialog("Costo por día:"));
+                    int luces = Integer.parseInt(JOptionPane.showInputDialog("Número de luces:"));
+                    double pot = Double.parseDouble(JOptionPane.showInputDialog("Potencia total Watts:"));
 
-        String IDliente = JOptionPane.showInputDialog("Ingrese la cédula del cliente:");
-
-        // Buscamos el cliente en la empresa
-        Cliente cliente = miEmpresa.buscarCliente(IDliente);
-
-        if (cliente == null) {
-            JOptionPane.showMessageDialog(null, "¡Error! El cliente no está registrado en el sistema.");
-            return;
-        }
-
-        // 2. Creamos la reserva (¡sin escribir "operador:"!)
-        Reserva nuevaReserva = new Reserva(codigoUnico, fecha, cliente, null, EstadoReserva.SOLICITADO, turno);
-
-        // 3. Intentamos agregarla a la empresa
-        boolean registrada = miEmpresa.agregarReserva(nuevaReserva);
-
-        if (registrada) {
-            JOptionPane.showMessageDialog(null, "¡Reserva creada con éxito en estado SOLICITADO!");
-        } else {
-            JOptionPane.showMessageDialog(null, "No se pudo crear la reserva (Código repetido o datos inválidos).");
+                    if (miEmpresa.agregarKit(codK, marcK, modK, costoK, luces, pot)) {
+                        JOptionPane.showMessageDialog(null, "¡Kit registrado con éxito!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se pudo registrar el kit.");
+                    }
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opción inválida.");
+                    break;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error en los datos numéricos o booleanos del equipo.");
         }
     }
 }

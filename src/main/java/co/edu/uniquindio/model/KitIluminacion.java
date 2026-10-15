@@ -1,29 +1,15 @@
 package co.edu.uniquindio.model;
 
-public class KitIluminacion extends  EquipoAudiovisual{
-    private int cantidadLuces;
-    private boolean tieneControlInalambrico;
+public class KitIluminacion extends EquipoAudiovisual {
+    private int numeroLuces;
+    private double potenciaTotalWatts;
 
-    public KitIluminacion(String codigo, String modelo, String marca, Condicion condicion,
-                          int cantidadLuces, boolean tieneControlInalambrico){
-        super(codigo, modelo , marca, condicion);
-        this.cantidadLuces = cantidadLuces;
-        this.tieneControlInalambrico = tieneControlInalambrico;
-    }
-    @Override
-    public double calcularCosto(int horas){
-        double costo = 10000 * horas;
-        if(tieneControlInalambrico){
-            costo+= 12000;
-        }
-        return costo;
+    public KitIluminacion(String codigo, String marca, String modelo, double costoDia, int numeroLuces, double potenciaTotalWatts) {
+        super(codigo, modelo, marca, costoDia);
+        this.numeroLuces = numeroLuces;
+        this.potenciaTotalWatts = potenciaTotalWatts;
     }
 
-    public int getCantidadLuces() {
-        return cantidadLuces;
-    }
-
-    public boolean isTieneControlInalambrico() {
-        return tieneControlInalambrico;
-    }
+    public int getNumeroLuces() { return numeroLuces; }
+    public double getPotenciaTotalWatts() { return potenciaTotalWatts; }
 }

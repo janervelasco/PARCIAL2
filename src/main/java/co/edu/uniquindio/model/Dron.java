@@ -2,27 +2,14 @@ package co.edu.uniquindio.model;
 
 public class Dron extends EquipoAudiovisual {
     private int autonomiaVueloMinutos;
-    private boolean tieneBateriaAdicioal;
-    public Dron(String codigo, String modelo, String marca, Condicion condicion,
-    int autonomiaVueloMinutos, boolean tieneBateriaAdicioal){
-        super(codigo, modelo, marca, condicion);
+    private boolean tieneBateriaAdicional;
+
+    public Dron(String codigo, String marca, String modelo, double costoDia, int autonomiaVueloMinutos, boolean tieneBateriaAdicional) {
+        super(codigo, modelo, marca, costoDia);
         this.autonomiaVueloMinutos = autonomiaVueloMinutos;
-        this.tieneBateriaAdicioal = tieneBateriaAdicioal;
-    }
-    @Override
-    public  double calcularCosto(int horas){
-        double costo = 18000 * horas;
-        if(tieneBateriaAdicioal){
-            costo+= 20000;
-        }
-                 return costo;
+        this.tieneBateriaAdicional = tieneBateriaAdicional;
     }
 
-    public int getAutonomiaVueloMinutos() {
-        return autonomiaVueloMinutos;
-    }
-
-    public boolean isTieneBateriaAdicioal() {
-        return tieneBateriaAdicioal;
-    }
+    public int getAutonomiaVueloMinutos() { return autonomiaVueloMinutos; }
+    public boolean isTieneBateriaAdicional() { return tieneBateriaAdicional; }
 }
