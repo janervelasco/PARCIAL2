@@ -173,7 +173,7 @@ public class Main {
             JOptionPane.showMessageDialog(null, "Error al crear la reserva.");
         }
     }
-//----------------------------------------------------------------------------------------------------------------------
+
 
     private static void menuGestionReservas() {
         String entradaOpcionGestionReservas = JOptionPane.showInputDialog(
