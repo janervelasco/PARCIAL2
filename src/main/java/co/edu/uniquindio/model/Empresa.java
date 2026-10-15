@@ -3,12 +3,12 @@ package co.edu.uniquindio.model;
 import java.time.LocalDate;
 
 public class Empresa {
-    private String nombre;
-    private String nit;
-    private String ciudad;
-    private String telefono;
+    private String nombreEmpresa;
+    private String nitEmpresa;
+    private String ciudadEmpresa;
+    private String telefonoEmpresa;
 
-
+    // Arreglos de tamaño fijo
     private Camara[] listCamaras = new Camara[100];
     private Dron[] listDrones = new Dron[100];
     private KitIluminacion[] listKits = new KitIluminacion[100];
@@ -17,258 +17,284 @@ public class Empresa {
     private Operador[] listOperadores = new Operador[100];
     private Sede[] listSedes = new Sede[100];
 
-    public Empresa(String nombre, String nit, String ciudad, String telefono) {
-        this.nombre = nombre;
-        this.nit = nit;
-        this.ciudad = ciudad;
-        this.telefono = telefono;
+    public Empresa(String nombreEmpresa, String nitEmpresa, String ciudadEmpresa, String telefonoEmpresa) {
+        this.nombreEmpresa = nombreEmpresa;
+        this.nitEmpresa = nitEmpresa;
+        this.ciudadEmpresa = ciudadEmpresa;
+        this.telefonoEmpresa = telefonoEmpresa;
     }
-
-//----------------------------------------------------------------------------------------------------------------------
 
     // --- BÚSQUEDAS POR ÍNDICE ---
-    public int encontrarIndexCamara(String codigo) {
+    public int encontrarIndexCamara(String codigoCamara) {
         for (int i = 0; i < listCamaras.length; i++) {
-            if (listCamaras[i] != null && listCamaras[i].getCodigo().equals(codigo)) return i;
+            if (listCamaras[i] != null && listCamaras[i].getCodigo().equals(codigoCamara)) {
+                return i;
+            }
         }
         return -1;
     }
 
-    public int encontrarIndexDron(String codigo) {
+    public int encontrarIndexDron(String codigoDron) {
         for (int i = 0; i < listDrones.length; i++) {
-            if (listDrones[i] != null && listDrones[i].getCodigo().equals(codigo)) return i;
+            if (listDrones[i] != null && listDrones[i].getCodigo().equals(codigoDron)) {
+                return i;
+            }
         }
         return -1;
     }
 
-    public int encontrarIndexKit(String codigo) {
+    public int encontrarIndexKit(String codigoKit) {
         for (int i = 0; i < listKits.length; i++) {
-            if (listKits[i] != null && listKits[i].getCodigo().equals(codigo)) return i;
+            if (listKits[i] != null && listKits[i].getCodigo().equals(codigoKit)) {
+                return i;
+            }
         }
         return -1;
     }
 
-    public int encontrarIndexCliente(String id) {
+    public int encontrarIndexCliente(String identificacionCliente) {
         for (int i = 0; i < listClientes.length; i++) {
-            if (listClientes[i] != null && listClientes[i].id().equals(id)) return i;
+            if (listClientes[i] != null && listClientes[i].id().equals(identificacionCliente)) {
+                return i;
+            }
         }
         return -1;
     }
 
-    public int encontrarIndexReserva(String codigo) {
+    public int encontrarIndexReserva(String codigoReserva) {
         for (int i = 0; i < listReservas.length; i++) {
-            if (listReservas[i] != null && listReservas[i].getCodigoUnico().equals(codigo)) return i;
+            if (listReservas[i] != null && listReservas[i].getCodigoUnico().equals(codigoReserva)) {
+                return i;
+            }
         }
         return -1;
     }
 
-    public int encontrarIndexOperador(String id) {
+    public int encontrarIndexOperador(String identificacionOperador) {
         for (int i = 0; i < listOperadores.length; i++) {
-            if (listOperadores[i] != null && listOperadores[i].id().equals(id)) return i;
+            if (listOperadores[i] != null && listOperadores[i].id().equals(identificacionOperador)) {
+                return i;
+            }
         }
         return -1;
     }
 
-    public int encontrarIndexSede(String nombre) {
+    public int encontrarIndexSede(String nombreSede) {
         for (int i = 0; i < listSedes.length; i++) {
-            if (listSedes[i] != null && listSedes[i].getNombre().equals(nombre)) return i;
+            if (listSedes[i] != null && listSedes[i].getNombre().equals(nombreSede)) {
+                return i;
+            }
         }
         return -1;
     }
-
-//----------------------------------------------------------------------------------------------------------------------
 
     // --- BÚSQUEDAS DE OBJETOS COMPLETOS ---
-    public Camara buscarCamara(String codigo) {
-        int idx = encontrarIndexCamara(codigo);
-        return idx != -1 ? listCamaras[idx] : null;
+    public Camara buscarCamara(String codigoCamara) {
+        int indiceEncontrado = encontrarIndexCamara(codigoCamara);
+        return indiceEncontrado != -1 ? listCamaras[indiceEncontrado] : null;
     }
 
-    public Dron buscarDron(String codigo) {
-        int idx = encontrarIndexDron(codigo);
-        return idx != -1 ? listDrones[idx] : null;
+    public Dron buscarDron(String codigoDron) {
+        int indiceEncontrado = encontrarIndexDron(codigoDron);
+        return indiceEncontrado != -1 ? listDrones[indiceEncontrado] : null;
     }
 
-    public KitIluminacion buscarKit(String codigo) {
-        int idx = encontrarIndexKit(codigo);
-        return idx != -1 ? listKits[idx] : null;
+    public KitIluminacion buscarKit(String codigoKit) {
+        int indiceEncontrado = encontrarIndexKit(codigoKit);
+        return indiceEncontrado != -1 ? listKits[indiceEncontrado] : null;
     }
 
-    public Operador buscarOperador(String id) {
-        int idx = encontrarIndexOperador(id);
-        return idx != -1 ? listOperadores[idx] : null;
+    public Operador buscarOperador(String identificacionOperador) {
+        int indiceEncontrado = encontrarIndexOperador(identificacionOperador);
+        return indiceEncontrado != -1 ? listOperadores[indiceEncontrado] : null;
     }
-
-//----------------------------------------------------------------------------------------------------------------------
 
     // --- REGISTROS ---
-    public boolean agregarCamara(String codigo, String marca, String modelo, String resolucionMax, boolean lentes) {
-        Camara nueva = new Camara(codigo, marca, modelo, 0.0, resolucionMax, lentes);
-        if (encontrarIndexCamara(codigo) == -1) {
+    public boolean agregarCamara(String codigoCamara, String marcaCamara, String modeloCamara, String resolucionMaxima, boolean lentesIntercambiables) {
+        Camara nuevaCamara = new Camara(codigoCamara, marcaCamara, modeloCamara, 0.0, resolucionMaxima, lentesIntercambiables);
+        if (encontrarIndexCamara(codigoCamara) == -1) {
             for (int i = 0; i < listCamaras.length; i++) {
-                if (listCamaras[i] == null) { listCamaras[i] = nueva; return true; }
+                if (listCamaras[i] == null) {
+                    listCamaras[i] = nuevaCamara;
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    public boolean agregarDron(String codigo, String marca, String modelo, int autonomia, boolean bateria) {
-        Dron nuevo = new Dron(codigo, marca, modelo, 0.0, autonomia, bateria);
-        if (encontrarIndexDron(codigo) == -1) {
+    public boolean agregarDron(String codigoDron, String marcaDron, String modeloDron, int autonomiaMinutos, boolean bateriaAdicional) {
+        Dron nuevoDron = new Dron(codigoDron, marcaDron, modeloDron, 0.0, autonomiaMinutos, bateriaAdicional);
+        if (encontrarIndexDron(codigoDron) == -1) {
             for (int i = 0; i < listDrones.length; i++) {
-                if (listDrones[i] == null) { listDrones[i] = nuevo; return true; }
+                if (listDrones[i] == null) {
+                    listDrones[i] = nuevoDron;
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    public boolean agregarKit(String codigo, String marca, String modelo, int luces, double potencia) {
-        KitIluminacion nuevo = new KitIluminacion(codigo, marca, modelo, 0.0, luces, potencia);
-        if (encontrarIndexKit(codigo) == -1) {
+    public boolean agregarKit(String codigoKit, String marcaKit, String modeloKit, int cantidadLuces, double potenciaTotal) {
+        KitIluminacion nuevoKit = new KitIluminacion(codigoKit, marcaKit, modeloKit, 0.0, cantidadLuces, potenciaTotal);
+        if (encontrarIndexKit(codigoKit) == -1) {
             for (int i = 0; i < listKits.length; i++) {
-                if (listKits[i] == null) { listKits[i] = nuevo; return true; }
+                if (listKits[i] == null) {
+                    listKits[i] = nuevoKit;
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    public boolean registrarCliente(String id, String nombre, String telefono, String correo) {
-        Cliente nuevo = new Cliente(id, nombre, telefono, correo);
-        if (encontrarIndexCliente(id) == -1) {
+    public boolean registrarCliente(String identificacionCliente, String nombreCliente, String telefonoCliente, String correoCliente) {
+        Cliente nuevoCliente = new Cliente(identificacionCliente, nombreCliente, telefonoCliente, correoCliente);
+        if (encontrarIndexCliente(identificacionCliente) == -1) {
             for (int i = 0; i < listClientes.length; i++) {
-                if (listClientes[i] == null) { listClientes[i] = nuevo; return true; }
+                if (listClientes[i] == null) {
+                    listClientes[i] = nuevoCliente;
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    public boolean registrarOperador(String id, String nombre, String telefono) {
-        Operador nuevo = new Operador(id, nombre, telefono);
-        if (encontrarIndexOperador(id) == -1) {
+    public boolean registrarOperador(String identificacionOperador, String nombreOperador, String telefonoOperador) {
+        Operador nuevoOperador = new Operador(identificacionOperador, nombreOperador, telefonoOperador);
+        if (encontrarIndexOperador(identificacionOperador) == -1) {
             for (int i = 0; i < listOperadores.length; i++) {
-                if (listOperadores[i] == null) { listOperadores[i] = nuevo; return true; }
+                if (listOperadores[i] == null) {
+                    listOperadores[i] = nuevoOperador;
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    public boolean registrarSede(String codigo, String nombre, String direccion) {
-        Sede nueva = new Sede(codigo, nombre, direccion);
-        if (encontrarIndexSede(codigo) == -1) {
+    public boolean registrarSede(String nombreSede, String direccionSede, String ciudadSede) {
+        Sede nuevaSede = new Sede(nombreSede, direccionSede, ciudadSede);
+        if (encontrarIndexSede(nombreSede) == -1) {
             for (int i = 0; i < listSedes.length; i++) {
-                if (listSedes[i] == null) { listSedes[i] = nueva; return true; }
+                if (listSedes[i] == null) {
+                    listSedes[i] = nuevaSede;
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    public boolean registrarReserva(String codigo, String idCliente, LocalDate fecha, Turno turno) {
-        int idxCliente = encontrarIndexCliente(idCliente);
-        if (encontrarIndexReserva(codigo) == -1 && idxCliente != -1) {
-            Reserva nueva = new Reserva(codigo, listClientes[idxCliente], fecha, turno);
+    public boolean registrarReserva(String codigoReserva, String identificacionCliente, LocalDate fechaReserva, Turno turnoReserva) {
+        int indiceCliente = encontrarIndexCliente(identificacionCliente);
+        if (encontrarIndexReserva(codigoReserva) == -1 && indiceCliente != -1) {
+            Reserva nuevaReserva = new Reserva(codigoReserva, listClientes[indiceCliente], fechaReserva, turnoReserva);
             for (int i = 0; i < listReservas.length; i++) {
-                if (listReservas[i] == null) { listReservas[i] = nueva; return true; }
+                if (listReservas[i] == null) {
+                    listReservas[i] = nuevaReserva;
+                    return true;
+                }
             }
         }
         return false;
     }
 
-//----------------------------------------------------------------------------------------------------------------------
+    public boolean agregarEquipoAReserva(String codigoReserva, EquipoAudiovisual equipoAudiovisual, int cantidadHoras) {
+        int indiceReserva = encontrarIndexReserva(codigoReserva);
+        return indiceReserva != -1 && listReservas[indiceReserva].agregarEquipoReserva(equipoAudiovisual, cantidadHoras);
+    }
 
-    // --- GESTIÓN DE RESERVA ---
-    public boolean agregarEquipoAReserva(String codigoReserva, EquipoAudiovisual equipo, int horas) {
-        int idx = encontrarIndexReserva(codigoReserva);
-        return idx != -1 && listReservas[idx].agregarEquipoReserva(equipo, horas);
+    public boolean asignarOperadorAReserva(String codigoReserva, Operador operadorAsignado) {
+        int indiceReserva = encontrarIndexReserva(codigoReserva);
+        if (indiceReserva != -1 && operadorAsignado != null) {
+            listReservas[indiceReserva].setOperador(operadorAsignado);
+            return true;
+        }
+        return false;
     }
 
     public boolean cambiarEstadoReserva(String codigoReserva, EstadoReserva nuevoEstado) {
-        int idx = encontrarIndexReserva(codigoReserva);
-        if (idx != -1) {
-            listReservas[idx].setEstado(nuevoEstado);
+        int indiceReserva = encontrarIndexReserva(codigoReserva);
+        if (indiceReserva != -1) {
+            listReservas[indiceReserva].setEstado(nuevoEstado);
             return true;
         }
         return false;
     }
 
     public double calcularCostoReserva(String codigoReserva) {
-        int idx = encontrarIndexReserva(codigoReserva);
-        if (idx != -1) {
-            return listReservas[idx].calcularCostoTotal(); // Asegúrate de tener este método en Reserva o implementarlo
+        int indiceReserva = encontrarIndexReserva(codigoReserva);
+        if (indiceReserva != -1) {
+            return listReservas[indiceReserva].calcularCostoTotal();
         }
         return 0.0;
     }
 
-//----------------------------------------------------------------------------------------------------------------------
-    public String mostrarCliente(String idClienteMostrar) {
-        String mensaje = "";
-        int index = encontrarIndexCliente(idClienteMostrar);
-
-        if (index != -1) {
-            Cliente clienteEncontrado = listClientes[index];
-
-            mensaje = "\n---Cliente encontrado---\n" +
-                    "\nNombre: " + clienteEncontrado.getNombre() +
-                    "\nTelefono: " + clienteEncontrado.getTelefono() +
-                    "\nCorreo: " + clienteEncontrado.getCorreo() ;
-        } else {
-            mensaje = "El cliente no se encuentra en la lista.";
+    // --- MÉTODOS DE CONSULTA Y MOSTRAR INFORMACIÓN ---
+    public String mostrarCliente(String identificacionCliente) {
+        int indiceCliente = encontrarIndexCliente(identificacionCliente);
+        if (indiceCliente != -1) {
+            Cliente clienteEncontrado = listClientes[indiceCliente];
+            return "--- INFORMACIÓN DEL CLIENTE ---\n" +
+                    "ID: " + clienteEncontrado.id() + "\n" +
+                    "Nombre: " + clienteEncontrado.nombre() + "\n" +
+                    "Teléfono: " + clienteEncontrado.telefono() + "\n" +
+                    "Correo: " + clienteEncontrado.correo();
         }
-
-        return mensaje;
+        return "Cliente no encontrado.";
     }
 
-    public String mostrarOperador(String idOperadorMostrar) {
-        String mensaje = "";
-        int index = encontrarIndexOperador(idOperadorMostrar);
-
-        if (index != -1) {
-            Operador operadorEncontrado = listOperadores[index];
-
-            mensaje = "\n---Operador encontrado---\n" +
-                    "\nNombre: " + operadorEncontrado.getNombre() +
-                    "\nTelefono: " + operadorEncontrado.getTelefono() ;
-        } else {
-            mensaje = "El Operador no se encuentra en la lista.";
+    public String mostrarOperador(String identificacionOperador) {
+        int indiceOperador = encontrarIndexOperador(identificacionOperador);
+        if (indiceOperador != -1) {
+            Operador operadorEncontrado = listOperadores[indiceOperador];
+            return "--- INFORMACIÓN DEL OPERADOR ---\n" +
+                    "ID: " + operadorEncontrado.id() + "\n" +
+                    "Nombre: " + operadorEncontrado.nombre() + "\n" +
+                    "Teléfono: " + operadorEncontrado.telefono();
         }
-
-        return mensaje;
+        return "Operador no encontrado.";
     }
 
-    public String mostrarSede(String idSedeMostrar) {
-        String mensaje = "";
-        int index = encontrarIndexSede(idSedeMostrar);
-
-        if (index != -1) {
-            Sede sedeEncontrado = listSedes[index];
-
-            mensaje = "\n---Sede encontrada---\n" +
-                    "\nNombre: " + sedeEncontrado.getNombre() +
-                    "\nTelefono: " + sedeEncontrado.getDireccion() +
-                    "\nCiudad: " + sedeEncontrado.getCiudad() ;
-        } else {
-            mensaje = "La Sede no se encuentra en la lista.";
+    public String mostrarSede(String nombreSede) {
+        int indiceSede = encontrarIndexSede(nombreSede);
+        if (indiceSede != -1) {
+            Sede sedeEncontrada = listSedes[indiceSede];
+            return "--- INFORMACIÓN DE LA SEDE ---\n" +
+                    "Nombre: " + sedeEncontrada.getNombre() + "\n" +
+                    "Dirección: " + sedeEncontrada.getDireccion() + "\n" +
+                    "Ciudad: " + sedeEncontrada.getCiudad();
         }
-
-        return mensaje;
+        return "Sede no encontrada.";
     }
 
-    public String mostrarReserva(String idReservaEncontrar) {
-        String mensaje = "";
-        int index = encontrarIndexReserva(idReservaEncontrar);
-
-        if (index != -1) {
-            Reserva reservaEncontrada = listReservas[index];
-
-            mensaje = "\n---Reserva encontrada---\n" +
-                    "\nNombre: " + reservaEncontrada.getCliente() +
-                    "\nFecha: " + reservaEncontrada.getFecha() +
-                    "\nTurno: " + reservaEncontrada.getTurno() +
-                    "\nEstado: " + reservaEncontrada.getEstado() +
-                    "\nOperador: " + reservaEncontrada.getOperador();
-        } else {
-            mensaje = "La Reserva no se encuentra en la lista.";
+    public String mostrarReserva(String codigoReserva) {
+        int indiceReserva = encontrarIndexReserva(codigoReserva);
+        if (indiceReserva != -1) {
+            Reserva reservaEncontrada = listReservas[indiceReserva];
+            String nombreOperadorAsignado = (reservaEncontrada.getOperador() != null) ? reservaEncontrada.getOperador().nombre() : "Sin operador asignado";
+            return "--- INFORMACIÓN DE LA RESERVA ---\n" +
+                    "Código: " + reservaEncontrada.getCodigoUnico() + "\n" +
+                    "Cliente: " + reservaEncontrada.getCliente().nombre() + "\n" +
+                    "Fecha: " + reservaEncontrada.getFecha() + "\n" +
+                    "Turno: " + reservaEncontrada.getTurno() + "\n" +
+                    "Estado: " + reservaEncontrada.getEstado() + "\n" +
+                    "Operador: " + nombreOperadorAsignado + "\n" +
+                    "Costo Total: $" + reservaEncontrada.calcularCostoTotal();
         }
-
-        return mensaje;
+        return "Reserva no encontrada.";
     }
+
+    // Getters y Setters básicos
+    public String getNombre() { return nombreEmpresa; }
+    public void setNombre(String nombreEmpresa) { this.nombreEmpresa = nombreEmpresa; }
+    public String getNit() { return nitEmpresa; }
+    public void setNit(String nitEmpresa) { this.nitEmpresa = nitEmpresa; }
+    public String getCiudad() { return ciudadEmpresa; }
+    public void setCiudad(String ciudadEmpresa) { this.ciudadEmpresa = ciudadEmpresa; }
+    public String getTelefono() { return telefonoEmpresa; }
+    public void setTelefono(String telefonoEmpresa) { this.telefonoEmpresa = telefonoEmpresa; }
 }
