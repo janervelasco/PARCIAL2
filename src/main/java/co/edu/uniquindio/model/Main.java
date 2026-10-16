@@ -174,6 +174,7 @@ public class Main {
         }
     }
 
+
     private static void menuGestionReservas() {
         String entradaOpcionGestionReservas = JOptionPane.showInputDialog(
                 "1. Agregar equipo a reserva\n" +
