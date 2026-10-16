@@ -7,8 +7,6 @@ public class Empresa {
     private String nitEmpresa;
     private String ciudadEmpresa;
     private String telefonoEmpresa;
-
-    // Arreglos de tamaño fijo
     private Camara[] listCamaras = new Camara[100];
     private Dron[] listDrones = new Dron[100];
     private KitIluminacion[] listKits = new KitIluminacion[100];

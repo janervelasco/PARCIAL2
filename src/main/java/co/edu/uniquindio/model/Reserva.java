@@ -18,25 +18,22 @@ public class Reserva {
         this.cliente = cliente;
         this.fecha = fecha;
         this.turno = turno;
-        this.estado = EstadoReserva.SOLICITADO; // Toda nueva reserva inicia como solicitada
+        this.estado = EstadoReserva.SOLICITADO;
         this.listEquipos = new EquipoAudiovisual[10];
         this.listHoras = new int[10];
     }
 
     public boolean agregarEquipoReserva(EquipoAudiovisual equipoAudiovisual, int cantidadHoras) {
-        // Verificar que el equipo esté disponible
         if (equipoAudiovisual.getCondicion() != Condicion.DISPONIBLE) {
             return false;
         }
 
-        // Verificar que el equipo no esté repetido en la reserva
         for (int i = 0; i < listEquipos.length; i++) {
             if (listEquipos[i] != null && listEquipos[i].getCodigo().equals(equipoAudiovisual.getCodigo())) {
                 return false;
             }
         }
 
-        // Buscar espacio libre y guardarlo de forma paralela usando la misma posición i
         for (int i = 0; i < listEquipos.length; i++) {
             if (listEquipos[i] == null) {
                 listEquipos[i] = equipoAudiovisual;
@@ -47,7 +44,7 @@ public class Reserva {
         return false;
     }
 
-    // Cálculo del costo total utilizando los arreglos paralelos y polimorfismo por horas
+
     public double calcularCostoTotal() {
         double costoTotalAcumulado = 0;
         for (int i = 0; i < listEquipos.length; i++) {

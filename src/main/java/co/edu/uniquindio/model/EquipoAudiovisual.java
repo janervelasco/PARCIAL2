@@ -15,7 +15,6 @@ public abstract class EquipoAudiovisual {
         this.condicion = condicion;
     }
 
-    // Método abstracto que cada clase hija (Camara, Dron, KitIluminacion) implementará a su manera
     public abstract double calcularCosto(int horas);
 
     // Getters y Setters
