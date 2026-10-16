@@ -43,8 +43,7 @@ public class Main {
 
     private static void menuRegistros() {
         String entradaOpcionRegistros = JOptionPane.showInputDialog(
-                "\n--- MENÚ DE REGISTROS ---\n" +
-                        "1. Registrar Equipo\n" +
+                "1. Registrar Equipo\n" +
                         "2. Registrar Cliente\n" +
                         "3. Registrar Operador\n" +
                         "4. Registrar Sede\n" +
@@ -117,14 +116,15 @@ public class Main {
                 break;
             case 3:
                 int cantidadLuces = Integer.parseInt(JOptionPane.showInputDialog("Cantidad de luces:"));
-                double potenciaTotal = Double.parseDouble(JOptionPane.showInputDialog("Potencia total:"));
-                if (empresaPixelRent.agregarKit(codigoEquipo, marcaEquipo, modeloEquipo, cantidadLuces, potenciaTotal)) {
+                boolean controlInalambrico = Boolean.parseBoolean(JOptionPane.showInputDialog("¿Tiene control inalámbrico? (true/false):"));
+                if (empresaPixelRent.agregarKit(codigoEquipo, marcaEquipo, modeloEquipo, cantidadLuces, controlInalambrico)) {
                     JOptionPane.showMessageDialog(null, "¡Kit registrado!");
                 } else {
                     JOptionPane.showMessageDialog(null, "Error al registrar kit.");
                 }
                 break;
         }
+
     }
 
     private static void registrarCliente() {
@@ -176,8 +176,7 @@ public class Main {
 
     private static void menuGestionReservas() {
         String entradaOpcionGestionReservas = JOptionPane.showInputDialog(
-                "\n--- GESTIÓN DE RESERVAS ---\n" +
-                        "1. Agregar equipo a reserva\n" +
+                "1. Agregar equipo a reserva\n" +
                         "2. Asignar operador a reserva\n" +
                         "3. Cambiar estado de reserva\n" +
                         "4. Calcular costo total de reserva\n" +
@@ -244,8 +243,7 @@ public class Main {
 
     public static void menuConsultas() {
         String entradaOpcionConsultas = JOptionPane.showInputDialog(
-                "\n--- MENÚ DE CONSULTAS ---\n" +
-                        "1. Consultar información cliente\n" +
+                "1. Consultar información cliente\n" +
                         "2. Consultar información operador\n" +
                         "3. Consultar información sede\n" +
                         "4. Consultar información reserva\n" +

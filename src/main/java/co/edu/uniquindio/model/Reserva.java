@@ -10,7 +10,6 @@ public class Reserva {
     private EstadoReserva estado;
     private Operador operador;
 
-    // Arreglos paralelos de tamaño 10 para los equipos y sus respectivas horas de uso
     private EquipoAudiovisual[] listEquipos;
     private int[] listHoras;
 
@@ -50,7 +49,7 @@ public class Reserva {
 
     // Cálculo del costo total utilizando los arreglos paralelos y polimorfismo por horas
     public double calcularCostoTotal() {
-        double costoTotalAcumulado = 0.0;
+        double costoTotalAcumulado = 0;
         for (int i = 0; i < listEquipos.length; i++) {
             if (listEquipos[i] != null) {
                 costoTotalAcumulado += listEquipos[i].calcularCosto(listHoras[i]);

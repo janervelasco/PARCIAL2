@@ -4,35 +4,51 @@ public abstract class EquipoAudiovisual {
     protected String codigo;
     protected String marca;
     protected String modelo;
-    protected double costoDia; // Tarifa base o de referencia
-    protected Condicion condicion; // Enum: DISPONIBLE, EN_MANTENIMIENTO, FUERA_DE_SERVICIO
+    protected double precioPorHora;
+    protected Condicion condicion;
 
-    public EquipoAudiovisual(String codigo, String marca, String modelo, double costoDia, Condicion condicion) {
+    public EquipoAudiovisual(String codigo, String marca, String modelo, double precioPorHora, Condicion condicion) {
         this.codigo = codigo;
         this.marca = marca;
         this.modelo = modelo;
-        this.costoDia = costoDia;
+        this.precioPorHora = precioPorHora;
         this.condicion = condicion;
     }
 
-    // Método abstracto que obliga a Camara, Dron y KitIluminacion a calcular su costo por hora
+    // Método abstracto que cada clase hija (Camara, Dron, KitIluminacion) implementará a su manera
     public abstract double calcularCosto(int horas);
 
-    // Getters comunes
+    // Getters y Setters
     public String getCodigo() {
         return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getMarca() {
         return marca;
     }
 
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
     public String getModelo() {
         return modelo;
     }
 
-    public double getCostoDia() {
-        return costoDia;
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public double getPrecioPorHora() {
+        return precioPorHora;
+    }
+
+    public void setPrecioPorHora(double precioPorHora) {
+        this.precioPorHora = precioPorHora;
     }
 
     public Condicion getCondicion() {

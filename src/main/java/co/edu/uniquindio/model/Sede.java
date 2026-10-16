@@ -8,7 +8,6 @@ public class Sede {
     private String direccion;
     private String ciudad;
 
-    // Listas asociadas a la sede usando estructura tradicional con índice i
     private List<Camara> camarasSede = new ArrayList<>();
     private List<Dron> dronesSede = new ArrayList<>();
     private List<KitIluminacion> kitsSede = new ArrayList<>();

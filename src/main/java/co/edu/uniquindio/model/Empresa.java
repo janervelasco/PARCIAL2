@@ -124,7 +124,7 @@ public class Empresa {
     }
 
     public boolean agregarDron(String codigoDron, String marcaDron, String modeloDron, int autonomiaMinutos, boolean bateriaAdicional) {
-        Dron nuevoDron = new Dron(codigoDron, marcaDron, modeloDron, 0.0, autonomiaMinutos, bateriaAdicional);
+        Dron nuevoDron = new Dron(codigoDron, marcaDron, modeloDron, autonomiaMinutos, bateriaAdicional);
         if (encontrarIndexDron(codigoDron) == -1) {
             for (int i = 0; i < listDrones.length; i++) {
                 if (listDrones[i] == null) {
@@ -136,8 +136,8 @@ public class Empresa {
         return false;
     }
 
-    public boolean agregarKit(String codigoKit, String marcaKit, String modeloKit, int cantidadLuces, double potenciaTotal) {
-        KitIluminacion nuevoKit = new KitIluminacion(codigoKit, marcaKit, modeloKit, 0.0, cantidadLuces, potenciaTotal);
+    public boolean agregarKit(String codigoKit, String marcaKit, String modeloKit, int cantidadLuces, boolean controlInalambrico) {
+        KitIluminacion nuevoKit = new KitIluminacion(codigoKit, marcaKit, modeloKit, cantidadLuces, controlInalambrico);
         if (encontrarIndexKit(codigoKit) == -1) {
             for (int i = 0; i < listKits.length; i++) {
                 if (listKits[i] == null) {
@@ -148,7 +148,6 @@ public class Empresa {
         }
         return false;
     }
-
     public boolean registrarCliente(String identificacionCliente, String nombreCliente, String telefonoCliente, String correoCliente) {
         Cliente nuevoCliente = new Cliente(identificacionCliente, nombreCliente, telefonoCliente, correoCliente);
         if (encontrarIndexCliente(identificacionCliente) == -1) {

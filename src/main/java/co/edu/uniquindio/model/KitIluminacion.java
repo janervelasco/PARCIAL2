@@ -2,19 +2,31 @@ package co.edu.uniquindio.model;
 
 public class KitIluminacion extends EquipoAudiovisual {
     private int cantidadLuces;
-    private double potenciaTotal;
+    private boolean controlInalambrico;
 
-    public KitIluminacion(String codigo, String marca, String modelo, double costoDia, int cantidadLuces, double potenciaTotal) {
-        super(codigo, marca, modelo, costoDia, Condicion.DISPONIBLE);
+    public KitIluminacion(String codigo, String marca, String modelo, int cantidadLuces, boolean controlInalambrico) {
+        super(codigo, marca, modelo, 10000.0, Condicion.DISPONIBLE); // Asigna los $10.000 de tarifa base por hora[cite: 4]
         this.cantidadLuces = cantidadLuces;
-        this.potenciaTotal = potenciaTotal;
+        this.controlInalambrico = controlInalambrico;
     }
 
     @Override
     public double calcularCosto(int horas) {
-        return (costoDia / 8) * horas;
+        double costoTotal = precioPorHora * horas;
+
+        // Un incremento de $12.000 cuando disponen de dicho control[cite: 4]
+        if (controlInalambrico) {
+            costoTotal += 12000.0;
+        }
+
+        return costoTotal;
     }
 
-    public int getCantidadLuces() { return cantidadLuces; }
-    public double getPotenciaTotal() { return potenciaTotal; }
+    public int getCantidadLuces() {
+        return cantidadLuces;
+    }
+
+    public boolean isControlInalambrico() {
+        return controlInalambrico;
+    }
 }
